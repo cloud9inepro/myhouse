@@ -5,6 +5,7 @@ const bodyParser = require ("body-parser");
 const  ejs    = require ("ejs");
 const axios = require('axios');
 const config = require("./config"); 
+const path = require("path");
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-
+app.use('/fontawesome', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
 
 
 app.get("/",  function(req, res){
