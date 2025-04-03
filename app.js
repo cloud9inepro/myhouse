@@ -4,7 +4,7 @@ const express = require ("express");
 const bodyParser = require ("body-parser");
 const  ejs    = require ("ejs");
 const axios = require('axios');
-
+const config = require("./config"); 
 
 const app = express();
 
@@ -13,9 +13,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-const API_KEY = "490fd9d300e722788892a9cb2c551a80-us20";
-const SERVER_PREFIX = "us20";
-const LIST_ID = "a04647d291";
+
 
 app.get("/",  function(req, res){
     res.render("home")
@@ -42,12 +40,12 @@ app.post("/", async function(req, res){
 
     try {
         const response = await axios.post(
-            `https://${SERVER_PREFIX}.api.mailchimp.com/3.0/lists/${LIST_ID}/members`,
+            `https://${config.SERVER_PREFIX}.api.mailchimp.com/3.0/lists/${config.LIST_ID}/members`,
             data,
             {
                 auth: {
                     username: "anystring", // Required but ignored
-                    password: API_KEY
+                    password: config.API_KEY
                 }
             }
         );
@@ -70,7 +68,4 @@ app.listen(4000, function(){
     console.log("server is running on port 4000");
 });
 
-//API KEY
-// 490fd9d300e722788892a9cb2c551a80-us20
-//mailchimp id
-// a04647d291
+
