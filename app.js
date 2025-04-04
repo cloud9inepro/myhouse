@@ -6,6 +6,7 @@ const  ejs    = require ("ejs");
 const axios = require('axios');
 const config = require("./config"); 
 const path = require("path");
+require('dotenv').config();
 
 const app = express();
 
