@@ -157,7 +157,6 @@ button:active{
 /* For very small screens */
 @media screen and (max-width: 480px) {
     html{
-        overflow: hidden;
         scroll-behavior: smooth;
 
     }
